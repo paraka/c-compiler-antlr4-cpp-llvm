@@ -26,7 +26,16 @@ antlr4cpp_process_grammar(demo antlrcpptest
 # include generated files in project environment
 include_directories(${antlr4cpp_include_dirs_antlrcpptest})
 
+# compiler sources
+
+file(GLOB SRCS src/*.cpp)
+
+set(COMPILER_SOURCES
+    ${SRCS}
+    ${antlr4cpp_src_files_antlrcpptest}
+)
+
 # add generated grammar to demo binary target
-add_executable(test_antlr main.cpp ${antlr4cpp_src_files_antlrcpptest})
+add_executable(test_antlr ${COMPILER_SOURCES})
 add_dependencies(test_antlr antlr4cpp antlr4cpp_generation_antlrcpptest)
 target_link_libraries(test_antlr antlr4-runtime)

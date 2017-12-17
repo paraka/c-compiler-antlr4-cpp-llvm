@@ -2,14 +2,19 @@
 #include <antlr4-runtime.h>
 #include <CLexer.h>
 #include <CParser.h>
+#include "compiler.h"
 
 using namespace antlr4;
 using namespace antlrcpptest;
 
-int main(void) 
+Compiler::Compiler(const std::string &file) : file_(file)
+{
+}
+
+bool Compiler::compile(void)
 {
     std::string line;
-    std::ifstream sample("../samples/simple.c");
+    std::ifstream sample(file_);
 
     if (sample.is_open()) 
     {
@@ -28,6 +33,5 @@ int main(void)
         sample.close();
     }
 
-    return 0;
+    return true;
 }
-
