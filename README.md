@@ -7,6 +7,9 @@ The idea is to use antlr4 (4.7 version) which let us to create a cpp backend fro
 = Compile project =
 
 $ mkdir build
+
 $ cd build
+
 $ cmake ..
+
 $ make -j 8
