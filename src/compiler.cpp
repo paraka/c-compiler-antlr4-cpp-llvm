@@ -2,6 +2,7 @@
 #include <antlr4-runtime.h>
 #include <CLexer.h>
 #include <CParser.h>
+#include "def_symbols.h"
 #include "compiler.h"
 
 using namespace antlr4;
@@ -30,6 +31,10 @@ bool Compiler::compile(void)
         CParser parser(&tokens);
         tree::ParseTree *tree = parser.compilationUnit();
         std::cout << tree->toStringTree(&parser) << std::endl;
+
+        DefSymbols def_symbols_listener;
+        tree::ParseTreeWalker::DEFAULT.walk(&def_symbols_listener, tree);
+
         sample.close();
     }
 
